@@ -4,6 +4,9 @@
     --tertiary-color: #0C4160;
     --quaternary-color: #071330;
     --text-color: white;
+    --book-color-1: #d03b3b;
+    --book-color-2: #28543c;
+    --book-color-3: #9b96cb;
 }
 
 /* GLOBAL */
@@ -80,6 +83,7 @@ body {
     padding-top: 0;
 }
 
+/*    BOOK    */
 .book { 
     position: relative;
     background-color: var(--text-color);
@@ -151,5 +155,52 @@ body {
     font-family: "Lora", serif;
     font-size: 40px;
     margin-bottom: 20px;
+}
+
+.cover_colors > button {
+    width: 40px;
+    height: 20px;
+    outline: 0;
+    border: 0;
+    margin:0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.content #title{
+    margin-top: 20px;
+    height: 150px;
+}
+
+#blue {
+    background-color: var(--tertiary-color);
+}
+
+#blue:hover {
+    outline: 2px solid var(--tertiary-color);
+}
+
+#red {
+    background-color: var(--book-color-1);
+}
+
+#red:hover {
+    outline: 2px solid var(--book-color-1);
+}
+
+#green {
+    background-color: var(--book-color-2);
+}
+
+#green:hover {
+    outline: 2px solid var(--book-color-2);
+}
+
+#purple {
+    background-color: var(--book-color-3);
+}
+
+#purple:hover {
+    outline: 2px solid var(--book-color-3);
 }
 
