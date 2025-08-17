@@ -1,0 +1,57 @@
+:root {
+    --primary-color: #C3CEDA;
+    --secondary-color: #738FA7;
+    --tertiary-color: #0C4160;
+    --quaternary-color: #071330;
+    --text-color: white;
+}
+
+/* GLOBAL RESET / BEST PRACTICE */
+*,
+*::before,
+*::after {
+    box-sizing: border-box; /* padding + border stay inside width/height */
+    margin: 0;
+    padding: 0;
+}
+
+/* BODY */
+body {
+    background-color: var(--primary-color);
+    font-family: "Merriweather", serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+/* HEADER */
+
+.header {
+    background-color: var(--secondary-color);
+    padding: 20px;
+    width: 100%;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    z-index: 1;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+}
+
+.functions {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.functions img{
+    height: 30px;
+    width: 30px;
+}
+
