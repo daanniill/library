@@ -6,13 +6,19 @@
     --text-color: white;
 }
 
-/* GLOBAL RESET / BEST PRACTICE */
+/* GLOBAL */
 *,
 *::before,
 *::after {
     box-sizing: border-box; /* padding + border stay inside width/height */
     margin: 0;
     padding: 0;
+}
+
+a {
+    font-size: 40px;
+    font-weight: lighter;
+    color: var(--text-color);
 }
 
 /* BODY */
@@ -51,7 +57,12 @@ body {
 }
 
 .functions img{
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
+    padding: 5px;
+    background-color: var(--text-color);
+    border-radius: 100%;
+    margin: 0 20px 0 20px;
 }
+
 
