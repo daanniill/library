@@ -59,7 +59,7 @@ a {
 /* BODY */
 body {
     background-color: var(--primary-color);
-    font-family: "Merriweather", serif;
+    font-family: "Goudy Bookletter 1911", serif;
     margin: 0;
     padding: 0;
     height: 100vh;
@@ -92,7 +92,7 @@ body {
         inset 300px 0 50px rgb(0, 0, 0, 0.2);
     transform: perspective(2000px);
     transform-style: preserve-3d;
-    transition: all 1s ease;
+    transition: all 0.5s ease;
 }
 
 .cover {
@@ -105,14 +105,22 @@ body {
     border-radius: 25px;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+    padding: 20px;
+    transform-origin: left;
+    transform-style: preserve-3d;
+    transition: all 0.5s ease;
+}
+
+.cover_content {
+    text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
-    transform-origin: left;
-    transform-style: preserve-3d;
-    transition: all 1s ease;
+    width: 100%;
+    height: 100%;
+    border: 2px solid white;
+    border-radius: 10px;
 }
 
 .book:hover {
