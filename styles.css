@@ -7,6 +7,8 @@
     --book-color-1: #d03b3b;
     --book-color-2: #28543c;
     --book-color-3: #9b96cb;
+    --button-completion: #04AA6D;
+    --button-delete: #f44336;
 }
 
 /* GLOBAL */
@@ -57,6 +59,13 @@ a {
     background-color: var(--text-color);
     border-radius: 100%;
     margin: 0 0 0 20px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.functions img:hover {
+    transition: 0.5s;
+    box-shadow: 0 0 10px 2px white;
 }
 
 /* BODY */
@@ -214,5 +223,22 @@ body {
     height: 40px;
     border-radius: 10px;
     border: 0;
+    color: var(--text-color);
+}
+
+#completion {
+    background-color: var(--button-completion);
+}
+
+#completion:hover {
+    outline: 2px solid var(--button-completion);
+}
+
+#delete {
+    background-color: var(--button-delete);
+}
+
+#delete:hover {
+    outline: 2px solid var(--button-delete);
 }
 
