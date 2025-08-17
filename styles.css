@@ -24,6 +24,7 @@ a {
     font-size: 40px;
     font-weight: lighter;
     color: var(--text-color);
+    cursor: pointer;
 }
 
 /* HEADER */
