@@ -204,3 +204,15 @@ body {
     outline: 2px solid var(--book-color-3);
 }
 
+.book_functions {
+    margin-top: 10px;
+}
+
+.book_functions > button {
+    cursor: pointer;
+    width: 80px;
+    height: 40px;
+    border-radius: 10px;
+    border: 0;
+}
+
