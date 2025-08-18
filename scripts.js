@@ -1,7 +1,8 @@
-function Book(title, author, length) {
+function Book(title, author, length, completed) {
     this.title = title;
     this.author = author;
     this.length = length;
+    this.completed = completed;
 }
 
 function create_book(new_book){
@@ -18,7 +19,13 @@ function create_book(new_book){
     newBook.querySelectorAll("#author")[0].textContent = `By ${new_book.author}`;
     newBook.querySelectorAll("#author")[1].textContent = `By ${new_book.author}`;
     newBook.querySelector("#length").textContent = `Length: ${new_book.length} pages`;
-    newBook.querySelector("#read_status").textContent = "Read Status: Not Started";
+    if (new_book.completed) {
+        newBook.querySelector("#read_status").textContent = "Read Status: Completed";
+    }
+    else {
+        newBook.querySelector("#read_status").textContent = "Read Status: Not Completed";
+    }
+    
 
     // Append the new book to the shelf
     bookShelf.appendChild(newBook);
@@ -30,10 +37,14 @@ function gather_book_data() {
     form.addEventListener("submit", function(e) {
         e.preventDefault(); // Stop default submit
         const formData = new FormData(e.target); 
-        const book = new Book(formData.get('book_title'), formData.get('author'), formData.get('pages'))
+        const book = new Book(
+            formData.get('book_title'), 
+            formData.get('author'), 
+            formData.get('pages'), 
+            formData.has('book_complete'))
         create_book(book)
-        dialog.close(); // closes the modal
         form.reset();
+        dialog.close(); // closes the modal
     });
 }
 
@@ -50,7 +61,7 @@ function btn_anim() {
         })
         input.addEventListener('blur', () => {
             // Only move back if input is empty
-            if (input.value.trim() === '') {
+            if (input.value.length === 0 && input.id != "pages") {
                 label.style.transform = 'translateX(10px) translateY(28px)';
                 label.style.fontSize = '16px';
                 label.style.transition = '0.2s'

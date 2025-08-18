@@ -129,6 +129,16 @@ label {
     color: var(--text-color);
 }
 
+#pages + label {
+    width: 80px;
+    cursor: default;
+} 
+
+#book_complete {
+    outline: 0;
+    cursor: pointer;
+}
+
 
 /* HEADER */
 
