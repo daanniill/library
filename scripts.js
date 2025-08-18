@@ -25,8 +25,8 @@ function create_book(new_book){
     else {
         newBook.querySelector("#read_status").textContent = "Read Status: Not Completed";
     }
-    
 
+    book_functions()
     // Append the new book to the shelf
     bookShelf.appendChild(newBook);
 }
@@ -70,6 +70,32 @@ function btn_anim() {
     })
 }
 
+function book_functions() {
+    const books = document.querySelectorAll(".book")
+
+    books.forEach(book => {
+        // Rebind button actions for this specific new book
+        const completionBtn = book.querySelector("#completion");
+        const deleteBtn = book.querySelector("#delete");
+        const readStatus = book.querySelector("#read_status");
+
+        completionBtn.addEventListener("click", () => {
+            if (readStatus.textContent.includes("Not")) {
+                readStatus.textContent = "Read Status: Completed";
+                completionBtn.textContent = "In-Progress";
+            } else {
+                readStatus.textContent = "Read Status: Not Completed";
+                completionBtn.textContent = "Completed";
+            }
+        });
+
+        deleteBtn.addEventListener("click", () => {
+            book.remove();
+        });
+    })
+}
+
+book_functions()
 gather_book_data()
 btn_anim()
 

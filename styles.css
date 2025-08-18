@@ -203,7 +203,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, 300px); 
     gap: 20px;
-    padding: 20px;
+    padding: 20px 80px 20px 80px;
     padding-top: 0;
 }
 
@@ -334,7 +334,8 @@ body {
 
 .book_functions > button {
     cursor: pointer;
-    width: 80px;
+    font-size: 11x;
+    width: 90px;
     height: 40px;
     border-radius: 10px;
     border: 0;
