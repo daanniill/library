@@ -1,3 +1,5 @@
+let library = []
+
 function Book(title, author, length, completed) {
     this.title = title;
     this.author = author;
@@ -6,29 +8,91 @@ function Book(title, author, length, completed) {
 }
 
 function create_book(new_book){
-    // Select the first book
+   // Main book container
+    const book = document.createElement("div");
+    book.classList.add("book");
+
+    // Cover section
+    const cover = document.createElement("div");
+    cover.classList.add("cover");
+
+    const coverContent = document.createElement("div");
+    coverContent.classList.add("cover_content");
+
+    const coverTitle = document.createElement("div");
+    coverTitle.id = "title";
+    coverTitle.textContent = new_book.title;
+
+    const coverAuthor = document.createElement("div");
+    coverAuthor.id = "author";
+    coverAuthor.textContent = `By ${new_book.author}`;
+
+    coverContent.appendChild(coverTitle);
+    coverContent.appendChild(coverAuthor);
+    cover.appendChild(coverContent);
+
+    // Content section
+    const content = document.createElement("div");
+    content.classList.add("content");
+
+    // Cover color buttons
+    const coverColors = document.createElement("div");
+    coverColors.classList.add("cover_colors");
+
+    ["blue", "red", "green", "purple"].forEach(color => {
+        const btn = document.createElement("button");
+        btn.id = color;
+        coverColors.appendChild(btn);
+    });
+
+    const contentTitle = document.createElement("div");
+    contentTitle.id = "title";
+    contentTitle.textContent = new_book.title;
+
+    const contentAuthor = document.createElement("div");
+    contentAuthor.id = "author";
+    contentAuthor.textContent = `By ${new_book.author}`;
+
+    const contentLength = document.createElement("div");
+    contentLength.id = "length";
+    contentLength.textContent = `Length: ${new_book.length} pages`;
+
+    const contentStatus = document.createElement("div");
+    contentStatus.id = "read_status";
+    contentStatus.textContent = new_book.completed 
+        ? "Read Status: Completed" 
+        : "Read Status: Not Completed";
+
+    // Book functions
+    const bookFunctions = document.createElement("div");
+    bookFunctions.classList.add("book_functions");
+
+    const completeBtn = document.createElement("button");
+    completeBtn.id = "completion";
+    completeBtn.textContent = new_book.completed ? "In-Progress" : "Completed";
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.id = "delete";
+    deleteBtn.textContent = "Delete";
+
+    bookFunctions.appendChild(completeBtn);
+    bookFunctions.appendChild(deleteBtn);
+
+    // Assemble content
+    content.appendChild(coverColors);
+    content.appendChild(contentTitle);
+    content.appendChild(contentAuthor);
+    content.appendChild(contentLength);
+    content.appendChild(contentStatus);
+    content.appendChild(bookFunctions);
+
+    // Assemble book
+    book.appendChild(cover);
+    book.appendChild(content);
+
+    // Append to bookshelf
     const bookShelf = document.querySelector(".book_shelf");
-    const firstBook = document.querySelector(".book");
-
-    // Clone the book (deep copy = true so children are copied too)
-    const newBook = firstBook.cloneNode(true);
-
-    // Update the fields inside the cloned book
-    newBook.querySelectorAll("#title")[0].textContent = new_book.title;
-    newBook.querySelectorAll("#title")[1].textContent = new_book.title;
-    newBook.querySelectorAll("#author")[0].textContent = `By ${new_book.author}`;
-    newBook.querySelectorAll("#author")[1].textContent = `By ${new_book.author}`;
-    newBook.querySelector("#length").textContent = `Length: ${new_book.length} pages`;
-    if (new_book.completed) {
-        newBook.querySelector("#read_status").textContent = "Read Status: Completed";
-    }
-    else {
-        newBook.querySelector("#read_status").textContent = "Read Status: Not Completed";
-    }
-
-    book_functions()
-    // Append the new book to the shelf
-    bookShelf.appendChild(newBook);
+    bookShelf.appendChild(book);
 }
 
 function gather_book_data() {
@@ -42,7 +106,8 @@ function gather_book_data() {
             formData.get('author'), 
             formData.get('pages'), 
             formData.has('book_complete'))
-        create_book(book)
+        library.push(book)
+        update_library()
         form.reset();
         dialog.close(); // closes the modal
     });
@@ -70,7 +135,11 @@ function btn_anim() {
     })
 }
 
-function book_functions() {
+function update_library() {
+    document.querySelector('.book_shelf').innerHTML = '';
+    for (const book of library) {
+        create_book(book)
+    }
     const books = document.querySelectorAll(".book")
 
     books.forEach(book => {
@@ -95,7 +164,29 @@ function book_functions() {
     })
 }
 
-book_functions()
+// pre-populate library array
+const book1 = new Book(
+    "Game of Thrones", 
+    "George R.R. Martin", 
+    "912", 
+    true)
+
+const book2 = new Book(
+    "1984", 
+    "George Orwell", 
+    "250", 
+    false)
+
+const book3 = new Book(
+    "The Eye of the World", 
+    "Robert Jordan", 
+    "600", 
+    true)
+library.push(book1)
+library.push(book2)
+library.push(book3)
+
+update_library()
 gather_book_data()
 btn_anim()
 
