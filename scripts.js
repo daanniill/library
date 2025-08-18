@@ -137,29 +137,29 @@ function btn_anim() {
 
 function update_library() {
     document.querySelector('.book_shelf').innerHTML = '';
-    for (const book of library) {
-        create_book(book)
-    }
-    const books = document.querySelectorAll(".book")
+    
+    library.forEach((book, index) => {
+        create_book(book);
 
-    books.forEach(book => {
-        // Rebind button actions for this specific new book
-        const completionBtn = book.querySelector("#completion");
-        const deleteBtn = book.querySelector("#delete");
-        const readStatus = book.querySelector("#read_status");
+        const currentBook = document.querySelectorAll(".book")[index];
+        const completionBtn = currentBook.querySelector("#completion");
+        const deleteBtn = currentBook.querySelector("#delete");
+        const readStatus = currentBook.querySelector("#read_status");
 
         completionBtn.addEventListener("click", () => {
             if (readStatus.textContent.includes("Not")) {
                 readStatus.textContent = "Read Status: Completed";
-                completionBtn.textContent = "In-Progress";
+                completionBtn.textContent = "In-Progress"; 
             } else {
                 readStatus.textContent = "Read Status: Not Completed";
                 completionBtn.textContent = "Completed";
             }
+            library[index].completed = !library[index].completed;
         });
 
         deleteBtn.addEventListener("click", () => {
-            book.remove();
+            library.splice(index, 1);
+            currentBook.remove();
         });
     })
 }
