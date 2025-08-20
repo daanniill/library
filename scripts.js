@@ -1,10 +1,17 @@
 let library = []
 
-function Book(title, author, length, completed) {
+const color1 = '#0C4160';
+const color2 = '#d03b3b';
+const color3 = '#28543c';
+const color4 = '#9b96cb';
+const hover_color = '#738FA7';
+
+function Book(title, author, length, completed, color) {
     this.title = title;
     this.author = author;
     this.length = length;
     this.completed = completed;
+    this.color = color;
 }
 
 function create_book(new_book){
@@ -15,6 +22,19 @@ function create_book(new_book){
     // Cover section
     const cover = document.createElement("div");
     cover.classList.add("cover");
+
+    if (new_book.color.includes("blue")) {
+        cover.style.backgroundColor = color1;
+    }
+    else if (new_book.color.includes("red")) {
+        cover.style.backgroundColor = color2;
+    }
+    else if (new_book.color.includes("green")) {
+        cover.style.backgroundColor = color3;
+    }
+    else {
+        cover.style.backgroundColor = color4;
+    }
 
     const coverContent = document.createElement("div");
     coverContent.classList.add("cover_content");
@@ -98,14 +118,38 @@ function create_book(new_book){
 function gather_book_data() {
     const form = document.querySelector(".new_book")
     const dialog = document.querySelector("dialog");
+    const cover_colors = dialog.querySelector(".cover_colors")
+    const colorBtns = cover_colors.querySelectorAll("button");
+    let color = ""
+
+    colorBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            // Save selected color
+            color = btn.id;
+            
+            // Remove outline from all buttons
+            colorBtns.forEach(b => b.style.outline = "none");
+
+            // Add strong outline to the selected one
+            btn.style.outline = `4px solid ${hover_color}`; // you can style it with CSS instead
+        });
+    });
+
     form.addEventListener("submit", function(e) {
         e.preventDefault(); // Stop default submit
         const formData = new FormData(e.target); 
+
+        console.log(color)
         const book = new Book(
             formData.get('book_title'), 
             formData.get('author'), 
             formData.get('pages'), 
-            formData.has('book_complete'))
+            formData.has('book_complete'),
+            color)
+        colorBtns.forEach(btn => {
+            btn.style.outline = '0';
+        })
+        color
         library.push(book)
         update_library()
         form.reset();
@@ -157,6 +201,42 @@ function update_library() {
             library[index].completed = !library[index].completed;
         });
 
+        const cover_colors = currentBook.querySelector(".cover_colors")
+        const colorBtns = cover_colors.querySelectorAll("button");
+        let color = ""
+
+        colorBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                // Save selected color
+                color = btn.id;
+                
+                // Remove outline from all buttons
+                colorBtns.forEach(b => b.style.outline = "none");
+
+                // Add strong outline to the selected one
+                btn.style.outline = `4px solid ${hover_color}`; // you can style it with CSS instead
+
+                const cover = currentBook.querySelector(".cover");
+                cover.classList.add("cover");
+
+                if (color.includes("blue")) {
+                    cover.style.backgroundColor = color1;
+                }
+                else if (color.includes("red")) {
+                    cover.style.backgroundColor = color2;
+                }
+                else if (color.includes("green")) {
+                    cover.style.backgroundColor = color3;
+                }
+                else {
+                    cover.style.backgroundColor = color4;
+                }
+
+                library[index].color = color;
+            });
+        });
+
+
         deleteBtn.addEventListener("click", () => {
             library.splice(index, 1);
             currentBook.remove();
@@ -169,19 +249,22 @@ const book1 = new Book(
     "Game of Thrones", 
     "George R.R. Martin", 
     "912", 
-    true)
+    true,
+    "blue")
 
 const book2 = new Book(
     "1984", 
     "George Orwell", 
     "250", 
-    false)
+    false,
+    "green")
 
 const book3 = new Book(
     "The Eye of the World", 
     "Robert Jordan", 
     "600", 
-    true)
+    true,
+    "red")
 library.push(book1)
 library.push(book2)
 library.push(book3)

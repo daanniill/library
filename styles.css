@@ -321,32 +321,16 @@ body {
     background-color: var(--tertiary-color);
 }
 
-#blue:hover {
-    outline: 2px solid var(--tertiary-color);
-}
-
 #red {
     background-color: var(--book-color-1);
-}
-
-#red:hover {
-    outline: 2px solid var(--book-color-1);
 }
 
 #green {
     background-color: var(--book-color-2);
 }
 
-#green:hover {
-    outline: 2px solid var(--book-color-2);
-}
-
 #purple {
     background-color: var(--book-color-3);
-}
-
-#purple:hover {
-    outline: 2px solid var(--book-color-3);
 }
 
 .book_functions {
