@@ -25,15 +25,26 @@
                         <button type="button" id="purple"></button>
                 </div>
                 <label for="book_title">* Book Title:</label>
-                <input type="text" id="book_title" name="book_title">
+                <input type="text" id="book_title" name="book_title" 
+                    required maxlength="30" 
+                    pattern=".{1,30}" 
+                    title="Title must be 1–30 characters">
+
                 <label for="author">* Author:</label>
-                <input type="text" id="author" name="author">
+                <input type="text" id="author" name="author" 
+                    required maxlength="25" 
+                    pattern=".{1,25}" 
+                    title="Author name must be 1–25 characters">
+
                 <label for="pages">* Pages: </label>
-                <input type="number" id="pages" name="pages">
+                <input type="number" id="pages" name="pages" 
+                    required min="1" max="9999" 
+                    title="Pages must be between 1 and 9999">
+
                 <label for="book_complete">Completed?: </label>
                 <input type="checkbox" id="book_complete" name="book_complete">
-            </div>
-            <button type="submit" id="submit">Create</button>
+                </div>
+                <button type="submit" id="submit">Create</button>
         </form>
     </dialog>
     <header class="header">
@@ -44,7 +55,7 @@
         </div>
     </header>
     <main class="main">
-        <div class="intro_info">Some basic info on how to use the app</div>
+        <div class="intro_info">To add a book, click the plus sign in the upper right and enter some details about your book!</div>
         <div class="book_shelf">
             <div class="book">
                 <div class="cover">

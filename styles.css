@@ -31,6 +31,38 @@ button {
     cursor: pointer;
 }
 
+@keyframes fadeInTop {
+  from {
+    opacity: 0;
+    transform: translateX(0px) scale(1);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(100px) scale(0.9);
+  }
+}
+
+@keyframes fadeAwayTop {
+  from {
+    opacity: 1;
+    transform: translateX(0px) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-100px) scale(0.9);
+  }
+}
+
+@keyframes cover{
+  from {
+    transform: rotateY(-135deg);
+  }
+  to {   
+    transform: rotateY(0);
+  }
+}
+
+
 /* DIALOG MODAL */
 dialog {
     z-index: 3;
@@ -45,11 +77,18 @@ dialog {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    color: var(--quaternary-color);
 }
 
 dialog[open] {
     display: flex;
     flex-direction: column;
+}
+
+dialog::backdrop {
+    background: rgba(255, 255, 255, 0.1); /* faint translucent */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
 }
 
 /* FORM */
@@ -155,7 +194,11 @@ label {
 /* HEADER */
 
 .header {
+    position: fixed;
+    top: 0;
+    left: 0;
     background-color: var(--secondary-color);
+    box-shadow: 10px 10px 20px rgb(0, 0, 0, 0.2);
     padding: 20px;
     width: 100%;
     max-width: 100%;
@@ -201,7 +244,7 @@ body {
     margin: 0;
     padding: 0;
     height: 100vh;
-    z-index: 0;
+    padding-top: 100px;
 }
 
 .main {
@@ -210,6 +253,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 20px;
+    z-index: 0;
 }
 
 .intro_info {
@@ -229,7 +273,7 @@ body {
 }
 
 /*    BOOK    */
-.book { 
+.book {
     position: relative;
     background-color: var(--text-color);
     width: 300px;
@@ -270,6 +314,10 @@ body {
     height: 100%;
     border: 2px solid white;
     border-radius: 10px;
+    overflow-wrap: break-word;  /* forces long words to break */
+    word-break: break-word;     /* older support */
+    white-space: normal;        /* allow wrapping */
+    padding: 10px;
 }
 
 .book:hover {
@@ -300,6 +348,11 @@ body {
     font-family: "Lora", serif;
     font-size: 40px;
     margin-bottom: 20px;
+    max-width: 100%;        /* ✅ prevents overflow */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+
 }
 
 .cover_colors > button {

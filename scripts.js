@@ -120,7 +120,7 @@ function gather_book_data() {
     const dialog = document.querySelector("dialog");
     const cover_colors = dialog.querySelector(".cover_colors")
     const colorBtns = cover_colors.querySelectorAll("button");
-    let color = ""
+    let color = "blue"
 
     colorBtns.forEach(btn => {
         btn.addEventListener("click", () => {
@@ -149,8 +149,9 @@ function gather_book_data() {
         colorBtns.forEach(btn => {
             btn.style.outline = '0';
         })
-        color
+
         library.push(book)
+        color = "blue"
         update_library()
         form.reset();
         dialog.close(); // closes the modal
@@ -239,7 +240,14 @@ function update_library() {
 
         deleteBtn.addEventListener("click", () => {
             library.splice(index, 1);
-            currentBook.remove();
+            currentBook.style.animationName = 'fadeAwayTop';
+            currentBook.style.animationDuration = '1s';
+
+            currentBook.querySelector(".cover").style.animationName = 'cover'
+            currentBook.querySelector(".cover").style.animationDuration = '1s'
+            setTimeout(function() {
+                currentBook.remove();
+            }, 1000);
         });
     })
 }
