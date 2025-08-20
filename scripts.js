@@ -6,7 +6,8 @@ const color3 = '#28543c';
 const color4 = '#9b96cb';
 const hover_color = '#738FA7';
 
-function Book(title, author, length, completed, color) {
+function Book(uuid, title, author, length, completed, color) {
+    this.uuid = uuid
     this.title = title;
     this.author = author;
     this.length = length;
@@ -141,6 +142,7 @@ function gather_book_data() {
 
         console.log(color)
         const book = new Book(
+            crypto.randomUUID(),
             formData.get('book_title'), 
             formData.get('author'), 
             formData.get('pages'), 
@@ -254,6 +256,7 @@ function update_library() {
 
 // pre-populate library array
 const book1 = new Book(
+    crypto.randomUUID(),
     "Game of Thrones", 
     "George R.R. Martin", 
     "912", 
@@ -261,6 +264,7 @@ const book1 = new Book(
     "blue")
 
 const book2 = new Book(
+    crypto.randomUUID(),
     "1984", 
     "George Orwell", 
     "250", 
@@ -268,6 +272,7 @@ const book2 = new Book(
     "green")
 
 const book3 = new Book(
+    crypto.randomUUID(),
     "The Eye of the World", 
     "Robert Jordan", 
     "600", 
